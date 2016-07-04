@@ -23,10 +23,11 @@ PROJECT_DIR = BASE_DIR
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
+with open(os.path.join(PROJECT_DIR, 'secret_key.txt')) as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-TEMPLATE_DEBUG = DEBUG
+DEBUG = True
 
 ADMINS = (
     ('Aubrays', 'contact@aubrays.ch'),
