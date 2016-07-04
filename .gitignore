@@ -6,3 +6,5 @@ data
 .sass-cache/
 media
 *.map
+*.swp
+settings_local.py

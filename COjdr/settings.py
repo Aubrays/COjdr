@@ -12,10 +12,12 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
-import secret_settings import *
+ROOT_DIR = os.path.dirname(os.path.realpath(__file__))
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = BASE_DIR
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,7 +25,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
+
+ADMINS = (
+    ('Aubrays', 'contact@aubrays.ch'),
+)
+
+MANAGERS = ADMINS
 
 ALLOWED_HOSTS = []
 
@@ -125,3 +134,4 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = '/home/black/Documents/jdr/chroniques-oubliees/COjdr/media/'
 MEDIA_URL = '/media/'
+
