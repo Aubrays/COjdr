@@ -1,0 +1,20 @@
+{% extends "cof/layout.html" %}
+
+{% block content %}
+
+<h1>Races</h1>
+
+<section class="grid-3">
+{% for race in races_list %}
+<article>
+		<h1>{{ race.race_name }}</h1>
+
+  <p>{{ race.race_description }}</p>
+  <p><a href="{% url 'cof:race' race.slug %}/">Adopte un {{ race.race_name }}...</a></p>
+</article>
+{% empty %}
+<p>No race yet.</p>
+{% endfor %}
+</section>
+
+{% endblock content %}

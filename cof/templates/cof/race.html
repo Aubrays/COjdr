@@ -1,0 +1,55 @@
+{% extends "cof/layout.html" %}
+
+{% block content %}
+
+<h1>{{ race.race_name }}</h1>
+
+<p>{{ race.race_description }}</p>
+<h2>Préjugés typiques</h2>
+<p>{{ race.prejudice }}</p>
+
+<p>{% if race.trait_strength != 0 %} FOR : {{ race.trait_strength }}{% endif %}
+{% if race.trait_dexterity != 0 %} DEX : {{ race.trait_dexterity }}{% endif %}
+{% if race.trait_constitution != 0 %} CON : {{ race.trait_constitution }}{% endif %}
+{% if race.trait_intelligence != 0 %} INT : {{ race.trait_intelligence }}{% endif %}
+{% if race.trait_wisdom != 0 %} SAG : {{ race.trait_wisdom }}{% endif %}
+{% if race.trait_charisma != 0 %} CHA : {{ race.trait_charisma }}{% endif %}
+</p>
+
+{% for racetrait in race.race_traits.all %}
+<h2>Capacité &mdash; {{ racetrait.race_trait_name }}</h2>
+<p>{{ racetrait.trait_description }}</p>
+{% endfor %}
+
+
+{% for racelimitation in race.race_limitation.all %}
+<h2>Limitation &mdash; {{ racelimitation.race_limitation_name }}</h2>
+<p>{{ racelimitation.limitation_description }}</p>
+{% endfor %}
+
+
+{% for racialway in race.racial_way.all %}
+<h2>{{ racialway.racial_way_name }}</h2>
+<div>
+		<h3>{{ racialway.rank_one.rank_level }}. {{ racialway.rank_one.rank_name}}</h3>
+	<p>{{ racialway.rank_one.rank_description }}</p>
+</div>
+<div>
+		<h3>{{ racialway.rank_two.rank_level }}. {{ racialway.rank_two.rank_name}}</h3>
+	<p>{{ racialway.rank_two.rank_description }}</p>
+</div>
+<div>
+		<h3>{{ racialway.rank_three.rank_level }}. {{ racialway.rank_three.rank_name}}</h3>
+	<p>{{ racialway.rank_three.rank_description }}</p>
+</div>
+<div>
+		<h3>{{ racialway.rank_four.rank_level }}. {{ racialway.rank_four.rank_name}}</h3>
+	<p>{{ racialway.rank_four.rank_description }}</p>
+</div>
+<div>
+		<h3>{{ racialway.rank_five.rank_level }}. {{ racialway.rank_five.rank_name}}</h3>
+	<p>{{ racialway.rank_five.rank_description }}</p>
+</div>
+{% endfor %}
+
+{% endblock content %}

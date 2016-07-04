@@ -1,0 +1,15 @@
+{% extends "cof/layout.html" %}
+
+{% block content %}
+
+<h1>Personnages créés</h1>
+
+<ul>
+{% for perso in perso_list %}
+<li><a href="{% url 'cof:perso' perso.slug %}/">{{ perso.full_name }}</a> &mdash; {% for profile in perso.profiles.all %}{{ profile.profile_name }} {% endfor %}&mdash; {{ perso.race }}</li>
+{% empty %}
+  <li>Pas de perso pour l'instant.</li>
+{% endfor %}
+</ul>
+
+{% endblock content %}

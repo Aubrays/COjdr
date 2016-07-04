@@ -1,0 +1,8 @@
+COjdr/secret-settings.py
+*.py[oc]
+__pycache__
+db.sqlite3
+data
+.sass-cache/
+media
+*.map

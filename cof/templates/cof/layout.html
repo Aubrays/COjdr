@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'cof/css/style.css' %}" >
+</head>
+<body>
+
+<header>
+	<h1>Un outil pour les Chroniques Oubliées Fantasy</h1>
+	<nav class="navbar">
+		<a href="{% url 'cof:index' %}">Accueil</a>
+		<a href="{% url 'cof:races' %}">Les races</a>
+		<a href="{% url 'cof:profiles' %}">Les profils</a>
+	</nav>
+</header>
+
+<main>
+{% block content %}{% endblock %}
+</main>
+
+<footer>
+	<p>Licence OGL3.5</p>
+</footer>
+
+</body>

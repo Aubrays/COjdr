@@ -1,0 +1,74 @@
+{% extends "cof/layout.html" %}
+
+{% block content %}
+<section class="profile">
+
+<h1>{{ profile.profile_name }}</h1>
+<div class="grid-3">
+	<div class="profile-informations">
+		<h2>{{ profile.get_family_display }}</h2>
+		<p>{{ profile.profile_description }}</p>
+
+		<dl>
+		   <dt>Dé de vie :</dt><dd>d{{ profile.hit_dice }}</dd>
+		   {% if profile.magic_modifier %}
+		   <dt>Mod. magique :</dt><dd>{{ profile.magic_modifier }}</dd>
+		   {% endif %}
+		   <dt>Recommandation :</dt><dd>{{ profile.recommanded_traits }}</dd>
+		   <dt>Carac. supérieures :</dt><dd>{% if profile.sup_strength %}FOR {% endif %}{% if profile.sup_dexterity %}DEX {% endif %}{% if profile.sup_constitution %}CON {% endif %}{% if profile.sup_intelligence %}INT {% endif %}{% if profile.sup_wisdom %}SAG {% endif %}{% if profile.sup_charisma %}CHA{% endif %}</dd>
+		</dl>
+		<h2>Voies de base</h2>
+			<ul>{% for basicway in profile.basic_ways.all %}
+				<li><a href="#{{ basicway.way_name|slugify }}">{{ basicway.way_name }}</a></li>
+			{% endfor %}</ul>
+	</div>
+	<div class="stuff">
+		<h2>Armes &amp; Armures</h2>
+		<p>{{ profile.weapons_armors_capacities }}</p>
+		<h2>Équipement de départ</h2>
+		<ul>{% for weapon in profile.weapons_start.all %}
+			<li>{{ weapon.profileweapons.quantity }} {{ weapon.weapon_name }} (DM	{{ weapon.damage_dice }}{% if weapon.weapon_range %}, {{ weapon.weapon_range }}m{% endif %}{% if weapon.critical %}, crit {{ weapon.critical }}{% endif %})</li>
+			{% endfor %}
+			{% for armor in profile.armor_start.all %}
+			<li>{{ armor.armor_name }} (DEF {{ armor.armor_def_value }})</li>
+			{% endfor %}
+			{% for material in profile.material_star %}
+			<li>{{ material.material_name }}</li>
+			{% endfor %}
+			{% if profile.special_material_start %}<li>{{ profile.special_material_start }}</li>{% endif %}
+		</ul>
+	</div>
+	<div>
+		<img src="{{ profile.profile_picture.url }}">
+	</div>
+</div>
+<div class="ways grid-3">
+	{% for basicway in profile.basic_ways.all %}
+	<div class="way card-4 mtm pam">
+		<h2 id="{{ basicway.way_name|slugify }}">{{ basicway.way_name }}</h2>
+		<p>{{ basicway.way_capacity }}</p>
+		<div>
+			<h3>{{ basicway.rank_one.rank_level }}. {{ basicway.rank_one.rank_name }} {% if basicway.rank_one.limited %}(L){% endif %}{% if basicway.rank_one.spell %}*{% endif %}</h3>
+			<p>{{ basicway.rank_one.rank_description }}</p>
+		</div>
+		<div>
+			<h3>{{ basicway.rank_two.rank_level }}. {{ basicway.rank_two.rank_name }} {% if basicway.rank_two.limited %}(L){% endif %}{% if basicway.rank_two.spell %}*{% endif %}</h3>
+			<p>{{ basicway.rank_two.rank_description }}</p>
+		</div>
+		<div>
+			<h3>{{ basicway.rank_three.rank_level }}. {{ basicway.rank_three.rank_name }} {% if basicway.rank_three.limited %}(L){% endif %}{% if basicway.rank_three.spell %}*{% endif %}</h3>
+			<p>{{ basicway.rank_three.rank_description }}</p>
+		</div>
+		<div>
+			<h3>{{ basicway.rank_four.rank_level }}. {{ basicway.rank_four.rank_name }} {% if basicway.rank_four.limited %}(L){% endif %}{% if basicway.rank_four.spell %}*{% endif %}</h3>
+			<p>{{ basicway.rank_four.rank_description }}</p>
+		</div>
+		<div>
+			<h3>{{ basicway.rank_five.rank_level }}. {{ basicway.rank_five.rank_name }} {% if basicway.rank_five.limited %}(L){% endif %}{% if basicway.rank_five.spell %}*{% endif %}</h3>
+			<p>{{ basicway.rank_five.rank_description }}</p>
+		</div>
+	</div> {# end way #}
+	{% endfor %}
+</div>
+</section>
+{% endblock content %}
