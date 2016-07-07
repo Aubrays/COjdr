@@ -9,3 +9,4 @@ media
 *.swp
 settings_local.py
 secret_key.txt
+allowed_hosts.txt

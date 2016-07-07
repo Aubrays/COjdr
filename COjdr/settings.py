@@ -27,7 +27,12 @@ with open(os.path.join(PROJECT_DIR, 'secret_key.txt')) as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+import socket
+
+if socket.gethostname() == 'scryptus.ch':
+    DEBUG = False
+else:
+    DEBUG = True
 
 ADMINS = (
     ('Aubrays', 'contact@aubrays.ch'),
@@ -35,7 +40,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-ALLOWED_HOSTS = []
+with open(os.path.join(PROJECT_DIR, 'allowed_hosts.txt')) as f:
+    ALLOWED_HOSTS = f.read().strip()
 
 
 # Application definition
